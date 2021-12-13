@@ -1,21 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import { View } from "react-native";
+import { BottomNavigation, Text } from "react-native-paper";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import HomeScreen from "./screens/HomeScreen";
+import SavedScreen from "./screens/SavedScreen";
+
+const HomeRoute = () => <HomeScreen />;
+const SavedRoute = () => <SavedScreen />;
 
 export default function App() {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: "home", title: "Home", icon: "home" },
+    { key: "saved", title: "Saved", icon: "bookmark" },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    home: HomeRoute,
+    saved: SavedRoute,
+  });
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+      />
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
