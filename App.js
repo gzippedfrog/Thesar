@@ -1,19 +1,18 @@
-import * as React from "react";
-import { View } from "react-native";
-import { BottomNavigation, Text } from "react-native-paper";
+import React, { useState } from "react";
+import { BottomNavigation } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import HomeScreen from "./screens/HomeScreen";
 import SavedScreen from "./screens/SavedScreen";
 
-const HomeRoute = () => <HomeScreen />;
-const SavedRoute = () => <SavedScreen />;
-
-export default function App() {
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
+function App() {
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
     { key: "home", title: "Home", icon: "home" },
     { key: "saved", title: "Saved", icon: "bookmark" },
   ]);
+
+  const HomeRoute = () => <HomeScreen />;
+  const SavedRoute = () => <SavedScreen />;
 
   const renderScene = BottomNavigation.SceneMap({
     home: HomeRoute,
@@ -30,3 +29,5 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
+
+export default App;

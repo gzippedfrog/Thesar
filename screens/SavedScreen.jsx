@@ -1,11 +1,15 @@
 import React from "react";
-import { Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function SavedScreen() {
+function SavedScreen() {
   return (
-    <SafeAreaView style={{ paddingHorizontal: 5 }}>
-      <Text>Saved Screen</Text>
+    <SafeAreaView>
+      <ScrollView style={{ paddingHorizontal: 10 }}>
+        <Text>Saved Screen</Text>
+      </ScrollView>
     </SafeAreaView>
   );
 }
+
+export default SavedScreen;

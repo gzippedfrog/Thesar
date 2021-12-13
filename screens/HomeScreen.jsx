@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { ScrollView, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView } from "react-native";
+import { Searchbar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Searchbar, Card, Paragraph } from "react-native-paper";
 import DefinitionCard from "../components/DefinitionCard";
 
 const key = "0a97f0e1-ac7e-41ca-9422-f61d039223b9";
 
-const HomeScreen = () => {
+function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState("cat");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(null);
 
   const fetchResults = () => {
     fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${searchQuery}?key=${key}
@@ -17,11 +17,13 @@ const HomeScreen = () => {
       .then(setResults);
   };
 
+  useEffect(() => fetchResults(), []);
+
   return (
-    <SafeAreaView style={{ paddingHorizontal: 10 }}>
+    <SafeAreaView>
       <ScrollView>
         <Searchbar
-          style={{ marginBottom: 10 }}
+          style={{ margin: 10 }}
           placeholder="Search"
           onChangeText={setSearchQuery}
           value={searchQuery}
@@ -32,6 +34,6 @@ const HomeScreen = () => {
       </ScrollView>
     </SafeAreaView>
   );
-};
+}
 
 export default HomeScreen;
