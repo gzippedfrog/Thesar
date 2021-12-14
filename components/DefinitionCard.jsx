@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Paragraph } from "react-native-paper";
+import SavedContext from "../context/savedContext";
 
 function DefinitionCard({ word }) {
+  const { setSaved } = useContext(SavedContext);
+
   const saveCard = () => {
-    console.log("saved");
+    setSaved(saved => saved.concat([word]));
   };
 
   return (
