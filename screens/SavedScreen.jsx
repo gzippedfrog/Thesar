@@ -8,31 +8,26 @@ function SavedScreen() {
   const { saved } = useContext(SavedContext);
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        {saved &&
-          saved.map(word => (
-            <Card
-              style={{ marginBottom: 10, marginHorizontal: 10 }}
-              key={word.meta.uuid}
-            >
-              <Card.Title
-                title={word.meta.id.replace(/\:.*/, "") + ", " + word.fl}
-              />
-              <Card.Content>
-                {word.shortdef.map(def => (
-                  <Paragraph
-                    style={{ marginBottom: 10, textAlign: "justify" }}
-                    key={def}
-                  >
-                    {def}
-                  </Paragraph>
-                ))}
-              </Card.Content>
-            </Card>
-          ))}
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView>
+      {saved &&
+        saved.map(word => (
+          <Card style={{ margin: 10 }} key={word.meta.uuid}>
+            <Card.Title
+              title={word.meta.id.replace(/\:.*/, "") + ", " + word.fl}
+            />
+            <Card.Content>
+              {word.shortdef.map(def => (
+                <Paragraph
+                  style={{ marginBottom: 10, textAlign: "justify" }}
+                  key={def}
+                >
+                  {def}
+                </Paragraph>
+              ))}
+            </Card.Content>
+          </Card>
+        ))}
+    </ScrollView>
   );
 }
 

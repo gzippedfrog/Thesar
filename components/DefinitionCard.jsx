@@ -6,12 +6,18 @@ function DefinitionCard({ word }) {
   const { setSaved } = useContext(SavedContext);
 
   const saveCard = () => {
-    setSaved(saved => saved.concat([word]));
+    setSaved(saved => {
+      if (saved.includes(word)) return saved;
+      return [...saved, word];
+    });
   };
 
   return (
     <Card
-      style={{ marginBottom: 10, marginHorizontal: 10 }}
+      style={{
+        marginHorizontal: 10,
+        marginBottom: 10,
+      }}
       onLongPress={saveCard}
     >
       <Card.Title title={word.meta.id.replace(/\:.*/, "") + ", " + word.fl} />
