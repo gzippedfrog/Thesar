@@ -1,32 +1,40 @@
-import React, { useContext } from "react";
-import { ScrollView } from "react-native";
+import React from "react";
+import { ScrollView, View } from "react-native";
 import { Card, Paragraph } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
-import SavedContext from "../context/savedContext";
+import { useSelector } from "react-redux";
 
 function SavedScreen() {
-  const { saved } = useContext(SavedContext);
+  const saved = useSelector((state) => state.saved);
 
   return (
     <ScrollView>
-      {saved &&
-        saved.map(word => (
-          <Card style={{ margin: 10 }} key={word.meta.uuid}>
-            <Card.Title
-              title={word.meta.id.replace(/\:.*/, "") + ", " + word.fl}
-            />
-            <Card.Content>
-              {word.shortdef.map(def => (
-                <Paragraph
-                  style={{ marginBottom: 10, textAlign: "justify" }}
-                  key={def}
-                >
-                  {def}
-                </Paragraph>
-              ))}
-            </Card.Content>
-          </Card>
-        ))}
+      <View style={{ paddingTop: 10 }}>
+        {saved &&
+          saved.map((definition) => (
+            <Card
+              style={{
+                marginHorizontal: 10,
+                marginBottom: 10,
+              }}
+            >
+              <Card.Title
+                title={
+                  definition.meta.id.replace(/\:.*/, "") + ", " + definition.fl
+                }
+              />
+              <Card.Content>
+                {definition.shortdef.map((def) => (
+                  <Paragraph
+                    style={{ marginBottom: 10, textAlign: "justify" }}
+                    key={def}
+                  >
+                    {def}
+                  </Paragraph>
+                ))}
+              </Card.Content>
+            </Card>
+          ))}
+      </View>
     </ScrollView>
   );
 }

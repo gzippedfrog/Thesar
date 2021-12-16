@@ -1,0 +1,2 @@
+export const FETCH_RESULTS = "FETCH_RESULTS";
+export const SAVE_DEFINITION = "SAVE_DEFINITION ";
