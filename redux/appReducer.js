@@ -3,7 +3,6 @@ import { FETCH_RESULTS, SAVE_DEFINITION } from "./types";
 const initialState = {
   results: [],
   saved: [],
-  fetched: false,
 };
 
 function appReducer(state = initialState, action) {
@@ -12,7 +11,6 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         results: action.payload,
-        fetched: true,
       };
     case SAVE_DEFINITION:
       return {

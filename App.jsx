@@ -3,10 +3,8 @@ import React, { useState } from "react";
 import { BottomNavigation } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-
 import HomeScreen from "./screens/HomeScreen";
 import SavedScreen from "./screens/SavedScreen";
 import appReducer from "./redux/appReducer";
