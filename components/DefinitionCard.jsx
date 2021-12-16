@@ -1,16 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Card, Paragraph } from "react-native-paper";
-import SavedContext from "../context/savedContext";
+import { useDispatch } from "react-redux";
+import { saveDefinition } from "../redux/actions";
 
-function DefinitionCard({ word }) {
-  const { setSaved } = useContext(SavedContext);
+function DefinitionCard({ word: definition }) {
+  const dispatch = useDispatch();
 
-  const saveCard = () => {
-    setSaved(saved => {
-      if (saved.includes(word)) return saved;
-      return [...saved, word];
-    });
-  };
+  const saveCard = () => dispatch(saveDefinition(definition));
 
   return (
     <Card
@@ -20,9 +16,11 @@ function DefinitionCard({ word }) {
       }}
       onLongPress={saveCard}
     >
-      <Card.Title title={word.meta.id.replace(/\:.*/, "") + ", " + word.fl} />
+      <Card.Title
+        title={definition.meta.id.replace(/\:.*/, "") + ", " + definition.fl}
+      />
       <Card.Content>
-        {word.shortdef.map(def => (
+        {definition.shortdef.map((def) => (
           <Paragraph
             style={{ marginBottom: 10, textAlign: "justify" }}
             key={def}
