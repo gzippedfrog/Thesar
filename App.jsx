@@ -1,8 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { BottomNavigation } from "react-native-paper";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import HomeScreen from "./screens/HomeScreen";
