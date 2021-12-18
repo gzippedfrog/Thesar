@@ -1,8 +1,8 @@
 import { FETCH_RESULTS, HIDE_BAR, SAVE_DEFINITION, SHOW_BAR } from "./types";
 
 const initialState = {
-  results: [],
-  saved: [],
+  results: {},
+  saved: {},
   barVisible: false,
 };
 
@@ -16,7 +16,10 @@ function appReducer(state = initialState, action) {
     case SAVE_DEFINITION:
       return {
         ...state,
-        saved: [...state.saved, action.payload],
+        saved: {
+          ...state.saved,
+          [action.payload.meta.uuid]: action.payload,
+        },
       };
     case SHOW_BAR:
       return {

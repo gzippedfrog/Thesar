@@ -20,16 +20,8 @@ const App = () => (
       <NavigationContainer>
         <StatusBar style="light" backgroundColor="#6200ee" />
         <SafeAreaProvider>
-          <SafeAreaView
-            style={{
-              height: "100%",
-            }}
-          >
-            <Tab.Navigator
-              barStyle={{
-                backgroundColor: "#6200ee",
-              }}
-            >
+          <SafeAreaView style={{ height: "100%" }}>
+            <Tab.Navigator barStyle={{ backgroundColor: "#6200ee" }}>
               <Tab.Screen
                 name="Home"
                 component={HomeScreen}

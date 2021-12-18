@@ -5,14 +5,12 @@ import DefinitionCard from "../components/DefinitionCard";
 
 const SavedScreen = () => {
   const saved = useSelector((state) => state.saved);
+  const ids = Object.keys(saved);
 
   return (
     <ScrollView>
       <View style={{ paddingTop: 10 }}>
-        {saved &&
-          saved.map((word) => (
-            <DefinitionCard word={word} key={word.meta.uuid} />
-          ))}
+        {saved && ids.map((id) => <DefinitionCard word={saved[id]} key={id} />)}
       </View>
     </ScrollView>
   );

@@ -8,7 +8,7 @@ const DefinitionCard = ({ word }) => {
   const dispatch = useDispatch();
 
   const saveCard = () => {
-    if (saved.includes(word)) return;
+    if (saved[word.meta.uuid]) return;
     dispatch(saveDefinition(word));
   };
 
