@@ -3,7 +3,7 @@ import { ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
 import DefinitionCard from "../components/DefinitionCard";
 
-function SavedScreen() {
+const SavedScreen = () => {
   const saved = useSelector((state) => state.saved);
 
   return (
@@ -16,6 +16,6 @@ function SavedScreen() {
       </View>
     </ScrollView>
   );
-}
+};
 
 export default SavedScreen;

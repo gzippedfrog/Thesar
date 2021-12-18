@@ -3,10 +3,9 @@ import { Card, Paragraph } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { saveDefinition } from "../redux/actions";
 
-function DefinitionCard({ word }) {
-  const dispatch = useDispatch();
-
+const DefinitionCard = ({ word }) => {
   const saved = useSelector((state) => state.saved);
+  const dispatch = useDispatch();
 
   const saveCard = () => {
     if (saved.includes(word)) return;
@@ -34,6 +33,6 @@ function DefinitionCard({ word }) {
       </Card.Content>
     </Card>
   );
-}
+};
 
 export default DefinitionCard;

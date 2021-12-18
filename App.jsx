@@ -2,15 +2,15 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { BottomNavigation } from "react-native-paper";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { configureStore } from "@reduxjs/toolkit";
+
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
+
 import HomeScreen from "./screens/HomeScreen";
 import SavedScreen from "./screens/SavedScreen";
-import appReducer from "./redux/appReducer";
 
-const store = configureStore({ reducer: appReducer });
-
-function App() {
+const App = () => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "home", title: "Home", icon: "home" },
@@ -25,23 +25,25 @@ function App() {
 
   return (
     <Provider store={store}>
-      <StatusBar style="light" backgroundColor="#6200ee" />
-      <SafeAreaProvider>
-        <SafeAreaView
-          style={{
-            height: "100%",
-            backgroundColor: "#eee",
-          }}
-        >
-          <BottomNavigation
-            navigationState={{ index, routes }}
-            onIndexChange={setIndex}
-            renderScene={renderScene}
-          />
-        </SafeAreaView>
-      </SafeAreaProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <StatusBar style="light" backgroundColor="#6200ee" />
+        <SafeAreaProvider>
+          <SafeAreaView
+            style={{
+              height: "100%",
+              backgroundColor: "#eee",
+            }}
+          >
+            <BottomNavigation
+              navigationState={{ index, routes }}
+              onIndexChange={setIndex}
+              renderScene={renderScene}
+            />
+          </SafeAreaView>
+        </SafeAreaProvider>
+      </PersistGate>
     </Provider>
   );
-}
+};
 
 export default App;

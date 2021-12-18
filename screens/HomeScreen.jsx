@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { ScrollView, Text, View, StyleSheet } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { Searchbar, Snackbar } from "react-native-paper";
+
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { fetchResults } from "../redux/actions";
+
 import DefinitionCard from "../components/DefinitionCard";
 
-function HomeScreen() {
+const HomeScreen = () => {
   const [searchQuery, setSearchQuery] = useState("cat");
   const results = useSelector((state) => state.results);
   const barVisible = useSelector((state) => state.barVisible);
@@ -26,8 +28,8 @@ function HomeScreen() {
       <ScrollView>
         <View style={{ paddingTop: 10 }}>
           {results[0]?.meta ? (
-            results.map((def) => (
-              <DefinitionCard word={def} key={def.meta.uuid} />
+            results.map((word) => (
+              <DefinitionCard word={word} key={word.meta.uuid} />
             ))
           ) : (
             <View>
@@ -39,13 +41,6 @@ function HomeScreen() {
       <Snackbar visible={barVisible}>Card has been saved</Snackbar>
     </>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-  },
-});
+};
 
 export default HomeScreen;
