@@ -1,8 +1,8 @@
 import {
   FETCH_RESULTS,
   HIDE_BAR,
-  REMOVE_DEFINITION,
-  SAVE_DEFINITION,
+  REMOVE_WORD,
+  SAVE_WORD,
   SHOW_BAR,
 } from "./types";
 
@@ -17,23 +17,23 @@ export const fetchResults = (query) => async (dispatch) => {
   dispatch({ type: FETCH_RESULTS, payload: results });
 };
 
-export const saveDefinition = (definition) => (dispatch) => {
+export const saveWord = (word) => (dispatch) => {
   dispatch({
-    type: SAVE_DEFINITION,
-    payload: definition,
+    type: SAVE_WORD,
+    payload: word,
   });
 
   dispatch({ type: SHOW_BAR, payload: "Card saved" });
   setTimeout(() => dispatch({ type: HIDE_BAR }), 2000);
 };
 
-export const removeDefinition = (definition) => (dispatch, getState) => {
+export const removeWord = (word) => (dispatch, getState) => {
   const state = getState();
   const newSaved = { ...state.saved };
-  delete newSaved[definition.meta.uuid];
+  delete newSaved[word.meta.uuid];
 
   dispatch({
-    type: REMOVE_DEFINITION,
+    type: REMOVE_WORD,
     payload: newSaved,
   });
 

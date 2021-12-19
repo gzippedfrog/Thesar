@@ -1,8 +1,8 @@
 import {
   FETCH_RESULTS,
   HIDE_BAR,
-  SAVE_DEFINITION,
-  REMOVE_DEFINITION,
+  SAVE_WORD,
+  REMOVE_WORD,
   SHOW_BAR,
 } from "./types";
 
@@ -20,7 +20,7 @@ function appReducer(state = initialState, action) {
         ...state,
         results: action.payload,
       };
-    case SAVE_DEFINITION:
+    case SAVE_WORD:
       return {
         ...state,
         saved: {
@@ -28,7 +28,7 @@ function appReducer(state = initialState, action) {
           [action.payload.meta.uuid]: action.payload,
         },
       };
-    case REMOVE_DEFINITION:
+    case REMOVE_WORD:
       return {
         ...state,
         saved: action.payload,

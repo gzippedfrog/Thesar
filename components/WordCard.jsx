@@ -1,17 +1,17 @@
 import React from "react";
 import { Card, Paragraph } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { removeDefinition, saveDefinition } from "../redux/actions";
+import { removeWord, saveWord } from "../redux/actions";
 
-const DefinitionCard = ({ word }) => {
+const WordCard = ({ word }) => {
   const saved = useSelector((state) => state.saved);
   const dispatch = useDispatch();
 
   function onCardLongPress() {
     if (saved[word.meta.uuid]) {
-      dispatch(removeDefinition(word));
+      dispatch(removeWord(word));
     } else {
-      dispatch(saveDefinition(word));
+      dispatch(saveWord(word));
     }
   }
 
@@ -38,4 +38,4 @@ const DefinitionCard = ({ word }) => {
   );
 };
 
-export default DefinitionCard;
+export default WordCard;

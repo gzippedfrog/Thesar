@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
 import Bar from "../components/Bar";
-import DefinitionCard from "../components/DefinitionCard";
+import WordCard from "../components/WordCard";
 
 const SavedScreen = () => {
   const saved = useSelector((state) => state.saved);
@@ -12,8 +12,7 @@ const SavedScreen = () => {
     <>
       <ScrollView>
         <View style={{ paddingTop: 10 }}>
-          {saved &&
-            ids.map((id) => <DefinitionCard word={saved[id]} key={id} />)}
+          {saved && ids.map((id) => <WordCard word={saved[id]} key={id} />)}
         </View>
       </ScrollView>
       <Bar />

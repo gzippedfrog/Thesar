@@ -3,7 +3,7 @@ import { ScrollView, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchResults } from "../redux/actions";
-import DefinitionCard from "../components/DefinitionCard";
+import WordCard from "../components/WordCard";
 import Bar from "../components/Bar";
 
 const HomeScreen = () => {
@@ -30,7 +30,7 @@ const HomeScreen = () => {
       <ScrollView>
         <View style={{ paddingTop: 10 }}>
           {results ? (
-            ids.map((id) => <DefinitionCard word={results[id]} key={id} />)
+            ids.map((id) => <WordCard word={results[id]} key={id} />)
           ) : (
             <View>
               <Text style={{ textAlign: "center" }}>No results</Text>
