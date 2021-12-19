@@ -1,6 +1,7 @@
 import React from "react";
 import { ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
+import Bar from "../components/Bar";
 import DefinitionCard from "../components/DefinitionCard";
 
 const SavedScreen = () => {
@@ -8,11 +9,15 @@ const SavedScreen = () => {
   const ids = Object.keys(saved);
 
   return (
-    <ScrollView>
-      <View style={{ paddingTop: 10 }}>
-        {saved && ids.map((id) => <DefinitionCard word={saved[id]} key={id} />)}
-      </View>
-    </ScrollView>
+    <>
+      <ScrollView>
+        <View style={{ paddingTop: 10 }}>
+          {saved &&
+            ids.map((id) => <DefinitionCard word={saved[id]} key={id} />)}
+        </View>
+      </ScrollView>
+      <Bar />
+    </>
   );
 };
 

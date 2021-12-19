@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { Searchbar, Snackbar } from "react-native-paper";
-
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { Searchbar } from "react-native-paper";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchResults } from "../redux/actions";
-
 import DefinitionCard from "../components/DefinitionCard";
+import Bar from "../components/Bar";
 
 const HomeScreen = () => {
   const [searchQuery, setSearchQuery] = useState("cat");
+
   const results = useSelector((state) => state.results);
-  const barVisible = useSelector((state) => state.barVisible);
+  const ids = Object.keys(results);
+
   const dispatch = useDispatch();
+
+  // useEffect(() => dispatch(fetchResults(searchQuery)), []);
 
   return (
     <>
@@ -27,10 +29,8 @@ const HomeScreen = () => {
 
       <ScrollView>
         <View style={{ paddingTop: 10 }}>
-          {results[0]?.meta ? (
-            results.map((word) => (
-              <DefinitionCard word={word} key={word.meta.uuid} />
-            ))
+          {results ? (
+            ids.map((id) => <DefinitionCard word={results[id]} key={id} />)
           ) : (
             <View>
               <Text style={{ textAlign: "center" }}>No results</Text>
@@ -38,7 +38,7 @@ const HomeScreen = () => {
           )}
         </View>
       </ScrollView>
-      <Snackbar visible={barVisible}>Card has been saved</Snackbar>
+      <Bar />
     </>
   );
 };
