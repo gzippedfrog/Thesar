@@ -22,14 +22,11 @@ export const saveWord = (word) => (dispatch) => {
     type: SAVE_WORD,
     payload: word,
   });
-
-  dispatch({ type: SHOW_BAR, payload: "Card saved" });
-  setTimeout(() => dispatch({ type: HIDE_BAR }), 2000);
+  dispatch(showMessage("Card saved"));
 };
 
 export const removeWord = (word) => (dispatch, getState) => {
-  const state = getState();
-  const newSaved = { ...state.saved };
+  const newSaved = { ...getState().saved };
   delete newSaved[word.meta.uuid];
 
   dispatch({
@@ -37,6 +34,13 @@ export const removeWord = (word) => (dispatch, getState) => {
     payload: newSaved,
   });
 
-  dispatch({ type: SHOW_BAR, payload: "Card removed" });
-  setTimeout(() => dispatch({ type: HIDE_BAR }), 2000);
+  dispatch(showMessage("Card removed"));
+};
+
+export const showMessage = (message) => (dispatch, getState) => {
+  // let timer = getState().barTimer;
+  // clearTimeout(timer);
+  dispatch({ type: HIDE_BAR });
+  setTimeout(() => dispatch({ type: SHOW_BAR, payload: message }), 100);
+  setTimeout(() => dispatch({ type: HIDE_BAR }), 3000);
 };

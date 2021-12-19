@@ -10,7 +10,8 @@ const initialState = {
   results: {},
   saved: {},
   barVisible: false,
-  barMsg: null,
+  barMessage: null,
+  barTimer: null,
 };
 
 function appReducer(state = initialState, action) {
@@ -37,7 +38,7 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         barVisible: true,
-        barMsg: action.payload,
+        barMessage: action.payload,
       };
     case HIDE_BAR:
       return {

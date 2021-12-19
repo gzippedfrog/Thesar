@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "dictionary-react-native",
-    "slug": "dictionary-react-native",
+    "name": "dictionary-rn",
+    "slug": "dictionary-rn",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.gzippedfrog.dictionaryreactnative"
+      "package": "com.gzippedfrog.dictionaryrn"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -1,7 +1,6 @@
 import React from "react";
 import { ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
-import Bar from "../components/Bar";
 import WordCard from "../components/WordCard";
 
 const SavedScreen = () => {
@@ -15,7 +14,6 @@ const SavedScreen = () => {
           {saved && ids.map((id) => <WordCard word={saved[id]} key={id} />)}
         </View>
       </ScrollView>
-      <Bar />
     </>
   );
 };

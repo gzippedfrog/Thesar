@@ -7,7 +7,7 @@ import appReducer from "./appReducer";
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  blacklist: "barVisible",
+  whitelist: ["results", "saved"],
 };
 
 const persistedReducer = persistReducer(persistConfig, appReducer);

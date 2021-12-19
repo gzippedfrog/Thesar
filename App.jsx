@@ -9,6 +9,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
 import HomeScreen from "./screens/HomeScreen";
 import SavedScreen from "./screens/SavedScreen";
+import Bar from "./components/Bar";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -49,6 +50,7 @@ const App = () => (
                 }}
               />
             </Tab.Navigator>
+            <Bar />
           </SafeAreaView>
         </SafeAreaProvider>
       </NavigationContainer>

@@ -4,7 +4,6 @@ import { Searchbar } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchResults } from "../redux/actions";
 import WordCard from "../components/WordCard";
-import Bar from "../components/Bar";
 
 const HomeScreen = () => {
   const [searchQuery, setSearchQuery] = useState("cat");
@@ -38,7 +37,6 @@ const HomeScreen = () => {
           )}
         </View>
       </ScrollView>
-      <Bar />
     </>
   );
 };
