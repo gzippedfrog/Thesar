@@ -3,11 +3,11 @@ import { Snackbar } from "react-native-paper";
 import { useSelector } from "react-redux";
 
 const Bar = () => {
-  const barVisible = useSelector((state) => state.barVisible);
-  const barMessage = useSelector((state) => state.barMessage);
+  const bar = useSelector((state) => state.bar);
+
   return (
-    <Snackbar style={{ marginBottom: 60 }} visible={barVisible}>
-      {barMessage}
+    <Snackbar style={{ marginBottom: 60 }} visible={bar.visible}>
+      {bar.message}
     </Snackbar>
   );
 };

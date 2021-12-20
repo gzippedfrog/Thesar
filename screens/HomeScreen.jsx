@@ -13,6 +13,11 @@ const HomeScreen = () => {
 
   const dispatch = useDispatch();
 
+  function handleSubmitSearch() {
+    if (!searchQuery.trim()) return;
+    dispatch(fetchResults(searchQuery.trim()));
+  }
+
   // useEffect(() => dispatch(fetchResults(searchQuery)), []);
 
   return (
@@ -22,21 +27,25 @@ const HomeScreen = () => {
           placeholder="Search"
           onChangeText={setSearchQuery}
           value={searchQuery}
-          onSubmitEditing={() => dispatch(fetchResults(searchQuery))}
+          onSubmitEditing={handleSubmitSearch}
         />
       </View>
 
-      <ScrollView>
-        <View style={{ paddingTop: 10 }}>
-          {results ? (
-            ids.map((id) => <WordCard word={results[id]} key={id} />)
-          ) : (
-            <View>
-              <Text style={{ textAlign: "center" }}>No results</Text>
+      <View style={{ flex: 1 }}>
+        {ids.length ? (
+          <ScrollView>
+            <View style={{ paddingTop: 10 }}>
+              {ids.map((id) => (
+                <WordCard word={results[id]} key={id} />
+              ))}
             </View>
-          )}
-        </View>
-      </ScrollView>
+          </ScrollView>
+        ) : (
+          <View style={{ paddingTop: 20 }}>
+            <Text style={{ textAlign: "center" }}>No results</Text>
+          </View>
+        )}
+      </View>
     </>
   );
 };

@@ -9,9 +9,11 @@ import {
 const initialState = {
   results: {},
   saved: {},
-  barVisible: false,
-  barMessage: null,
-  barTimer: null,
+  bar: {
+    visible: false,
+    message: null,
+    timer: null,
+  },
 };
 
 function appReducer(state = initialState, action) {
@@ -30,20 +32,29 @@ function appReducer(state = initialState, action) {
         },
       };
     case REMOVE_WORD:
+      const newSaved = { ...state.saved };
+      delete newSaved[action.payload.meta.uuid];
       return {
         ...state,
-        saved: action.payload,
+        saved: newSaved,
       };
     case SHOW_BAR:
       return {
         ...state,
-        barVisible: true,
-        barMessage: action.payload,
+        bar: {
+          visible: true,
+          message: action.payload.message,
+          timer: action.payload.timer,
+        },
       };
     case HIDE_BAR:
       return {
         ...state,
-        barVisible: false,
+        bar: {
+          visible: false,
+          message: null,
+          timer: state.bar.timer,
+        },
       };
     default:
       return state;

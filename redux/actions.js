@@ -13,7 +13,7 @@ export const fetchResults = (query) => async (dispatch) => {
   let response = await fetch(url + query + "?key=" + key);
   response = await response.json();
   const results = {};
-  response.map((def) => (results[def.meta.uuid] = def));
+  response.map((word) => (results[word.meta.uuid] = word));
   dispatch({ type: FETCH_RESULTS, payload: results });
 };
 
@@ -25,22 +25,27 @@ export const saveWord = (word) => (dispatch) => {
   dispatch(showMessage("Card saved"));
 };
 
-export const removeWord = (word) => (dispatch, getState) => {
-  const newSaved = { ...getState().saved };
-  delete newSaved[word.meta.uuid];
-
+export const removeWord = (word) => (dispatch) => {
   dispatch({
     type: REMOVE_WORD,
-    payload: newSaved,
+    payload: word,
   });
-
   dispatch(showMessage("Card removed"));
 };
 
 export const showMessage = (message) => (dispatch, getState) => {
-  // let timer = getState().barTimer;
-  // clearTimeout(timer);
   dispatch({ type: HIDE_BAR });
-  setTimeout(() => dispatch({ type: SHOW_BAR, payload: message }), 100);
-  setTimeout(() => dispatch({ type: HIDE_BAR }), 3000);
+  clearTimeout(getState().bar.timer);
+  let timer = setTimeout(() => dispatch({ type: HIDE_BAR }), 2000);
+  setTimeout(
+    () =>
+      dispatch({
+        type: SHOW_BAR,
+        payload: {
+          message,
+          timer,
+        },
+      }),
+    100
+  );
 };
