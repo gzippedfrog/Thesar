@@ -13,7 +13,7 @@ import Bar from "./components/Bar";
 
 const Tab = createMaterialBottomTabNavigator();
 
-persistor.purge();
+// persistor.purge();
 
 const App = () => (
   <Provider store={store}>

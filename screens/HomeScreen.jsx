@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import React, { useState } from "react";
+import { View } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchResults } from "../redux/actions";
-import WordCard from "../components/WordCard";
+import CardList from "../components/CardList";
 
 const HomeScreen = () => {
   const [searchQuery, setSearchQuery] = useState("cat");
-
-  const results = useSelector((state) => state.results);
-  const ids = Object.keys(results);
-
   const dispatch = useDispatch();
 
-  function handleSubmitSearch() {
+  function handleSearchSubmit() {
     if (!searchQuery.trim()) return;
     dispatch(fetchResults(searchQuery.trim()));
   }
@@ -27,25 +23,11 @@ const HomeScreen = () => {
           placeholder="Search"
           onChangeText={setSearchQuery}
           value={searchQuery}
-          onSubmitEditing={handleSubmitSearch}
+          onSubmitEditing={handleSearchSubmit}
         />
       </View>
 
-      <View style={{ flex: 1 }}>
-        {ids.length ? (
-          <ScrollView>
-            <View style={{ paddingTop: 10 }}>
-              {ids.map((id) => (
-                <WordCard word={results[id]} key={id} />
-              ))}
-            </View>
-          </ScrollView>
-        ) : (
-          <View style={{ paddingTop: 20 }}>
-            <Text style={{ textAlign: "center" }}>No results</Text>
-          </View>
-        )}
-      </View>
+      <CardList data="results" />
     </>
   );
 };
