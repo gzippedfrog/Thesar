@@ -23,7 +23,7 @@ const WordCard = ({ word }) => {
       }}
       onLongPress={onCardLongPress}
     >
-      <Card.Title title={word.meta.id.replace(/\:.*/, "") + ", " + word.fl} />
+      <Card.Title title={word.meta.id.replace(/\:.*/, "")} subtitle={word.fl} />
       <Card.Content>
         {word.shortdef.map((def) => (
           <Paragraph

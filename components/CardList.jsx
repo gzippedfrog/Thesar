@@ -1,5 +1,6 @@
 import React from "react";
-import { ScrollView, View, Text } from "react-native";
+import { Text } from "react-native-paper";
+import { ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
 import WordCard from "./WordCard";
 
@@ -8,16 +9,22 @@ const CardList = ({ data }) => {
   const ids = Object.keys(words);
 
   return ids.length ? (
-    <ScrollView>
-      <View style={{ paddingTop: 10 }}>
-        {ids.map((id) => (
-          <WordCard word={words[id]} key={id} />
-        ))}
-      </View>
+    <ScrollView contentContainerStyle={{ paddingTop: 10 }}>
+      {ids.map((id) => (
+        <WordCard word={words[id]} key={id} />
+      ))}
     </ScrollView>
   ) : (
-    <View style={{ paddingTop: 20 }}>
-      <Text style={{ textAlign: "center" }}>No results</Text>
+    <View style={{ paddingTop: 10 }}>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: 20,
+          fontWeight: "bold",
+        }}
+      >
+        No results 🤔
+      </Text>
     </View>
   );
 };
