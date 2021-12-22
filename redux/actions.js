@@ -6,8 +6,11 @@ import {
   SHOW_BAR,
 } from "./types";
 
-const key = "0a97f0e1-ac7e-41ca-9422-f61d039223b9";
-const url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/";
+const key = "802ed77c-a736-442e-88ad-7496371b49e4";
+const url = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
+// Dictionary
+// const key = "0a97f0e1-ac7e-41ca-9422-f61d039223b9";
+// const url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/";
 
 export const fetchResults = (query) => async (dispatch) => {
   let response = await fetch(url + query + "?key=" + key);

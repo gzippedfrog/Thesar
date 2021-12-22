@@ -11,20 +11,7 @@ import merge from "deepmerge";
 let lightTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 let darkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 
-lightTheme = {
-  ...lightTheme,
-  colors: {
-    ...lightTheme.colors,
-    primary: "#0097A7",
-  },
-};
-
-darkTheme = {
-  ...darkTheme,
-  colors: {
-    ...darkTheme.colors,
-    primary: "#80DEEA",
-  },
-};
+lightTheme.colors.primary = "#6200ee";
+darkTheme.colors.primary = "#a877ed";
 
 export { lightTheme, darkTheme };

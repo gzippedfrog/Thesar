@@ -1,12 +1,12 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { Card, Paragraph } from "react-native-paper";
+import { Card, Paragraph, Text, useTheme } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { removeWord, saveWord } from "../redux/actions";
 
 const WordCard = ({ word }) => {
   const saved = useSelector((state) => state.saved);
   const dispatch = useDispatch();
+  const { colors } = useTheme();
 
   function onCardLongPress() {
     if (saved[word.meta.uuid]) {
@@ -16,33 +16,31 @@ const WordCard = ({ word }) => {
     }
   }
 
-  // because of react-native-paper bug, TouchableOpacity
-  // is needed to stop app from crashing when the theme switches
   return (
-    <TouchableOpacity>
-      <Card
-        style={{
-          marginHorizontal: 10,
-          marginBottom: 10,
-        }}
-        onLongPress={onCardLongPress}
-      >
-        <Card.Title
-          title={word.meta.id.replace(/\:.*/, "")}
-          subtitle={word.fl}
-        />
-        <Card.Content>
-          {word.shortdef.map((def) => (
-            <Paragraph
-              style={{ marginBottom: 10, textAlign: "justify" }}
-              key={def}
-            >
-              {def}
-            </Paragraph>
-          ))}
-        </Card.Content>
-      </Card>
-    </TouchableOpacity>
+    <Card
+      style={{
+        marginHorizontal: 10,
+        marginBottom: 10,
+      }}
+      onLongPress={onCardLongPress}
+    >
+      <Card.Title title={word.meta.id.replace(/\:.*/, "")} subtitle={word.fl} />
+      <Card.Content>
+        {word.shortdef.map((def, i) => (
+          <Paragraph
+            style={{
+              marginBottom: 20,
+              textAlign: "justify",
+            }}
+            key={def}
+          >
+            {def + "\n"}
+            <Text style={{ color: colors.primary }}>synonyms: </Text>
+            {word.meta.syns[i].join(", ")}
+          </Paragraph>
+        ))}
+      </Card.Content>
+    </Card>
   );
 };
 

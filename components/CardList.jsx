@@ -15,10 +15,9 @@ const CardList = ({ data }) => {
       keyExtractor={(word) => word.meta.uuid}
     />
   ) : (
-    <View style={{ paddingTop: 10 }}>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text
         style={{
-          textAlign: "center",
           fontSize: 20,
           fontWeight: "bold",
         }}

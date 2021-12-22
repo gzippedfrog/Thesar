@@ -21,6 +21,7 @@ const HomeScreen = () => {
         style={{
           margin: 5,
           backgroundColor: colors.primary,
+          // flex: 1,
         }}
       >
         <Searchbar
@@ -28,6 +29,7 @@ const HomeScreen = () => {
           onChangeText={setSearchQuery}
           value={searchQuery}
           onSubmitEditing={handleSearchSubmit}
+          style={{ width: "100%" }}
         />
       </Appbar.Header>
       <CardList data="results" />

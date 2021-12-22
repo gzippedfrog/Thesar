@@ -1,11 +1,22 @@
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Appbar, useTheme } from "react-native-paper";
 import CardList from "../components/CardList";
 
-const SavedScreen = () => (
-  <SafeAreaView style={{ flex: 1 }}>
-    <CardList data="saved" />
-  </SafeAreaView>
-);
+const SavedScreen = () => {
+  const { colors } = useTheme();
+  return (
+    <>
+      <Appbar.Header
+        style={{
+          margin: 5,
+          backgroundColor: colors.primary,
+        }}
+      >
+        <Appbar.Content title="Reactive Thesaurus" />
+      </Appbar.Header>
+      <CardList data="saved" />
+    </>
+  );
+};
 
 export default SavedScreen;
