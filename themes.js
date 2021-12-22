@@ -8,23 +8,23 @@ import {
 } from "@react-navigation/native";
 import merge from "deepmerge";
 
-export const lightTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
-export const darkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
+let lightTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
+let darkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 
-// lightTheme = {
-//   ...lightTheme,
-//   colors: {
-//     ...lightTheme.colors,
-//     primary: "#0097A7",
-//   },
-// };
+lightTheme = {
+  ...lightTheme,
+  colors: {
+    ...lightTheme.colors,
+    primary: "#0097A7",
+  },
+};
 
-// darkTheme = {
-//   ...darkTheme,
-//   colors: {
-//     ...darkTheme.colors,
-//     primary: "#80DEEA",
-//   },
-// };
+darkTheme = {
+  ...darkTheme,
+  colors: {
+    ...darkTheme.colors,
+    primary: "#80DEEA",
+  },
+};
 
-// export { lightTheme, darkTheme };
+export { lightTheme, darkTheme };

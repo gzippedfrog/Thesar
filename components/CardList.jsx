@@ -1,19 +1,19 @@
 import React from "react";
 import { Text } from "react-native-paper";
-import { ScrollView, View } from "react-native";
+import { FlatList, View } from "react-native";
 import { useSelector } from "react-redux";
 import WordCard from "./WordCard";
 
 const CardList = ({ data }) => {
-  const words = useSelector((state) => state[data]);
-  const ids = Object.keys(words);
+  const words = useSelector((state) => Object.values(state[data]));
 
-  return ids.length ? (
-    <ScrollView contentContainerStyle={{ paddingTop: 10 }}>
-      {ids.map((id) => (
-        <WordCard word={words[id]} key={id} />
-      ))}
-    </ScrollView>
+  return words.length ? (
+    <FlatList
+      contentContainerStyle={{ paddingTop: 10 }}
+      data={words}
+      renderItem={({ item }) => <WordCard word={item} />}
+      keyExtractor={(word) => word.meta.uuid}
+    />
   ) : (
     <View style={{ paddingTop: 10 }}>
       <Text

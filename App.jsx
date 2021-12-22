@@ -23,7 +23,6 @@ const Tab = createMaterialBottomTabNavigator();
 const App = () => {
   const systemTheme = useColorScheme();
   const theme = systemTheme === "dark" ? darkTheme : lightTheme;
-  console.log(theme);
 
   return (
     <StoreProvider store={store}>
