@@ -6,7 +6,7 @@ import { fetchResults } from "../redux/actions";
 import CardList from "../components/CardList";
 
 const HomeScreen = () => {
-  const [searchQuery, setSearchQuery] = useState("cat");
+  const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
   const { colors } = useTheme();
 
@@ -21,7 +21,6 @@ const HomeScreen = () => {
         style={{
           margin: 5,
           backgroundColor: colors.primary,
-          // flex: 1,
         }}
       >
         <Searchbar

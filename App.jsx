@@ -17,8 +17,6 @@ import { lightTheme, darkTheme } from "./styles/themes";
 
 const Tab = createMaterialBottomTabNavigator();
 
-persistor.purge();
-
 const App = () => {
   const systemTheme = useColorScheme();
   const theme = systemTheme === "dark" ? darkTheme : lightTheme;
