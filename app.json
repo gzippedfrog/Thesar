@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "dictionary-rn",
-    "slug": "dictionary-rn",
+    "name": "Thesar",
+    "slug": "thesar",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#009bd0"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,12 +21,14 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#009bd0"
       },
       "package": "com.gzippedfrog.dictionaryrn"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Simple thesaurus app written with React Native",
+    "githubUrl": "https://github.com/gzippedfrog/Thesar"
   }
 }

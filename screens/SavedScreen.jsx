@@ -12,7 +12,7 @@ const SavedScreen = () => {
           backgroundColor: colors.primary,
         }}
       >
-        <Appbar.Content title="Reactive Thesaurus" />
+        <Appbar.Content title="Thesar" />
       </Appbar.Header>
       <CardList data="saved" />
     </>
