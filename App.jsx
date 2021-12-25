@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Provider as PaperProvider } from "react-native-paper";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Provider as StoreProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -25,45 +26,47 @@ const App = () => {
     <StoreProvider store={store}>
       <PaperProvider theme={theme}>
         <PersistGate loading={null} persistor={persistor}>
-          <NavigationContainer theme={theme}>
-            <StatusBar
-              style={theme.dark ? "dark" : "light"}
-              backgroundColor={theme.colors.primary}
-            />
-            <Tab.Navigator
-              activeColor={
-                theme.dark ? theme.colors.primary : theme.colors.background
-              }
-            >
-              <Tab.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{
-                  tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons
-                      name="home"
-                      color={color}
-                      size={26}
-                    />
-                  ),
-                }}
+          <SafeAreaProvider>
+            <NavigationContainer theme={theme}>
+              <StatusBar
+                style={theme.dark ? "dark" : "light"}
+                backgroundColor={theme.colors.primary}
               />
-              <Tab.Screen
-                name="Saved"
-                component={SavedScreen}
-                options={{
-                  tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons
-                      name="bookmark"
-                      color={color}
-                      size={26}
-                    />
-                  ),
-                }}
-              />
-            </Tab.Navigator>
-            <Bar />
-          </NavigationContainer>
+              <Tab.Navigator
+                activeColor={
+                  theme.dark ? theme.colors.primary : theme.colors.background
+                }
+              >
+                <Tab.Screen
+                  name="Home"
+                  component={HomeScreen}
+                  options={{
+                    tabBarIcon: ({ color }) => (
+                      <MaterialCommunityIcons
+                        name="home"
+                        color={color}
+                        size={26}
+                      />
+                    ),
+                  }}
+                />
+                <Tab.Screen
+                  name="Saved"
+                  component={SavedScreen}
+                  options={{
+                    tabBarIcon: ({ color }) => (
+                      <MaterialCommunityIcons
+                        name="bookmark"
+                        color={color}
+                        size={26}
+                      />
+                    ),
+                  }}
+                />
+              </Tab.Navigator>
+              <Bar />
+            </NavigationContainer>
+          </SafeAreaProvider>
         </PersistGate>
       </PaperProvider>
     </StoreProvider>
