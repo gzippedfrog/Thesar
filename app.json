@@ -23,7 +23,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#009bd0"
       },
-      "package": "com.gzippedfrog.dictionaryrn"
+      "package": "com.gzippedfrog.thesar"
     },
     "web": {
       "favicon": "./assets/favicon.png"
