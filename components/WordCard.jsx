@@ -24,7 +24,7 @@ const WordCard = ({ word }) => {
         {word.shortdef.map((def, i) => (
           <Paragraph style={styles.paragraph} key={def}>
             {def + "\n"}
-            <Text style={{ color: colors.primary }}>synonyms: </Text>
+            <Text style={{ color: colors.accent }}>synonyms: </Text>
             {word.meta.syns[i].join(", ")}
           </Paragraph>
         ))}

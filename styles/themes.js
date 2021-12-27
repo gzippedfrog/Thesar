@@ -11,7 +11,14 @@ import merge from "deepmerge";
 let lightTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 let darkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 
-lightTheme.colors.primary = "#009bd0";
-darkTheme.colors.primary = "#75ceec";
+lightTheme.colors.primary = "#eceff1";
+lightTheme.colors.accent = "#009bd0";
+lightTheme.colors.appbarFg = "rgba(0,0,0,0.5)";
+// lightTheme.colors.status = "dark";
+// lightTheme.colors.appbar = "blue";
+
+darkTheme.colors.primary = "#121212";
+darkTheme.colors.accent = "#5eccff";
+darkTheme.colors.appbarFg = "rgba(255,255,255,0.5)";
 
 export { lightTheme, darkTheme };
