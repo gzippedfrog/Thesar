@@ -19,18 +19,18 @@ import Bar from "./components/Bar";
 const Tab = createMaterialTopTabNavigator();
 
 // Clear store (for testing)
-persistor.purge();
+// persistor.purge();
 
 const App = () => {
   const systemTheme = useColorScheme();
   const theme = systemTheme === "dark" ? darkTheme : lightTheme;
-  const { colors } = theme;
+  const { colors, dark } = theme;
 
   return (
     <StoreProvider store={store}>
       <PaperProvider theme={theme}>
         <PersistGate loading={null} persistor={persistor}>
-          <StatusBar />
+          <StatusBar style="light" />
           <Header />
           <SafeAreaProvider>
             <NavigationContainer theme={theme}>
@@ -41,7 +41,7 @@ const App = () => {
                     fontWeight: "bold",
                   },
                   tabBarActiveTintColor: colors.accent,
-                  tabBarInactiveTintColor: colors.appbarFg,
+                  tabBarInactiveTintColor: "rgba(255, 255, 255, 0.5)",
 
                   tabBarIndicatorStyle: {
                     backgroundColor: colors.accent,
@@ -49,19 +49,19 @@ const App = () => {
                   },
                   tabBarStyle: {
                     backgroundColor: colors.primary,
-                    elevation: 5,
+                    elevation: 10,
                   },
                   tabBarItemStyle: { flexDirection: "row" },
                 }}
               >
                 <Tab.Screen
-                  name="Home"
+                  name="Results"
                   component={CardList}
                   initialParams={{ data: "results" }}
                   options={{
                     tabBarIcon: ({ color }) => (
                       <MaterialCommunityIcons
-                        name="home"
+                        name="view-list"
                         color={color}
                         size={24}
                       />

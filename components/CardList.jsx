@@ -9,11 +9,14 @@ const CardList = ({ route }) => {
     Object.values(state.app[route.params.data])
   );
   const isLoading = useSelector((state) => state.loader);
-  const { colors } = useTheme();
+  const { colors, dark } = useTheme();
 
   return isLoading ? (
     <View style={styles.textContainer}>
-      <ActivityIndicator size="large" color={colors.accent} />
+      <ActivityIndicator
+        size="large"
+        color={dark ? colors.accent : colors.primary}
+      />
     </View>
   ) : words.length ? (
     <FlatList
@@ -24,7 +27,7 @@ const CardList = ({ route }) => {
     />
   ) : (
     <View style={styles.textContainer}>
-      <Text>No results </Text>
+      <Text>No {route.params.data}</Text>
     </View>
   );
 };

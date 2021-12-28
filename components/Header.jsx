@@ -7,7 +7,7 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [lastQuery, setLastQuery] = useState("");
   const dispatch = useDispatch();
-  const { colors } = useTheme();
+  const { colors, dark } = useTheme();
 
   function handleSearchSubmit() {
     const query = searchQuery.trim();
@@ -30,6 +30,10 @@ const Header = () => {
         onSubmitEditing={handleSearchSubmit}
         style={styles}
         selectionColor={colors.accent}
+        iconColor="white"
+        inputStyle={{ color: "white" }}
+        placeholderTextColor="rgba(255, 255, 255, 0.5)"
+        selectionColor={dark ? colors.accent : "orange"}
       />
     </Appbar.Header>
   );

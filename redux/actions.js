@@ -14,12 +14,14 @@ const url = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
 export const fetchResults = (query) => async (dispatch) => {
   const results = {};
   dispatch(showLoader());
-  // await new Promise((res) => setTimeout(() => res(), 1000));
+  // await new Promise((res) => setTimeout(() => res(), 2000));
 
   try {
     let response = await fetch(url + query + "?key=" + key);
     response = await response.json();
     response.map((word) => (results[word.meta.uuid] = word));
+  } catch (e) {
+    console.log("Error:", e.message);
   } finally {
     dispatch(hideLoader());
     dispatch({ type: FETCH_RESULTS, payload: results });
