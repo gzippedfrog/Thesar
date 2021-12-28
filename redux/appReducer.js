@@ -4,6 +4,8 @@ import {
   SAVE_WORD,
   REMOVE_WORD,
   SHOW_BAR,
+  SHOW_LOADER,
+  HIDE_LOADER,
 } from "./types";
 
 const initialState = {
@@ -14,10 +16,21 @@ const initialState = {
     message: null,
     timer: null,
   },
+  isLoading: false,
 };
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case SHOW_LOADER:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case HIDE_LOADER:
+      return {
+        ...state,
+        isLoading: false,
+      };
     case FETCH_RESULTS:
       return {
         ...state,

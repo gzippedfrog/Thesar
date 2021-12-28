@@ -1,9 +1,11 @@
 import {
   FETCH_RESULTS,
   HIDE_BAR,
+  HIDE_LOADER,
   REMOVE_WORD,
   SAVE_WORD,
   SHOW_BAR,
+  SHOW_LOADER,
 } from "./types";
 
 const key = "802ed77c-a736-442e-88ad-7496371b49e4";
@@ -13,26 +15,28 @@ const url = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
 // const url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/";
 
 export const fetchResults = (query) => async (dispatch) => {
+  dispatch(showLoader());
+  // await new Promise((res) => setTimeout(() => res(), 2000));
+
   let response = await fetch(url + query + "?key=" + key);
   response = await response.json();
   const results = {};
   response.map((word) => (results[word.meta.uuid] = word));
   dispatch({ type: FETCH_RESULTS, payload: results });
+
+  dispatch(hideLoader());
 };
 
+export const showLoader = () => ({ type: SHOW_LOADER });
+export const hideLoader = () => ({ type: HIDE_LOADER });
+
 export const saveWord = (word) => (dispatch) => {
-  dispatch({
-    type: SAVE_WORD,
-    payload: word,
-  });
+  dispatch({ type: SAVE_WORD, payload: word });
   dispatch(showMessage("Card saved"));
 };
 
 export const removeWord = (word) => (dispatch) => {
-  dispatch({
-    type: REMOVE_WORD,
-    payload: word,
-  });
+  dispatch({ type: REMOVE_WORD, payload: word });
   dispatch(showMessage("Card removed"));
 };
 

@@ -1,11 +1,13 @@
 import React from "react";
-import { FlatList, View, StyleSheet } from "react-native";
-import { Text } from "react-native-paper";
+import { FlatList, View, StyleSheet, ActivityIndicator } from "react-native";
+import { Text, useTheme } from "react-native-paper";
 import { useSelector } from "react-redux";
 import WordCard from "./WordCard";
 
-const CardList = ({ data }) => {
-  const words = useSelector((state) => Object.values(state[data]));
+const CardList = ({ route }) => {
+  const words = useSelector((state) => Object.values(state[route.params.data]));
+  const isLoading = useSelector((state) => state.isLoading);
+  const { colors } = useTheme();
 
   return words.length ? (
     <FlatList
@@ -16,7 +18,11 @@ const CardList = ({ data }) => {
     />
   ) : (
     <View style={styles.textContainer}>
-      <Text>No results </Text>
+      {isLoading ? (
+        <ActivityIndicator size="large" color={colors.accent} />
+      ) : (
+        <Text>No results </Text>
+      )}
     </View>
   );
 };

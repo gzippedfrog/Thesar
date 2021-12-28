@@ -1,62 +1,37 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React from "react";
 import { useColorScheme } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import {
-  Searchbar,
-  Appbar,
-  Provider as PaperProvider,
-} from "react-native-paper";
+import { Provider as PaperProvider } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Provider as StoreProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
 
-import HomeScreen from "./screens/HomeScreen";
-import SavedScreen from "./screens/SavedScreen";
-import Bar from "./components/Bar";
 import { lightTheme, darkTheme } from "./styles/themes";
+import Header from "./components/Header";
+import CardList from "./components/CardList";
+import Bar from "./components/Bar";
 
 const Tab = createMaterialTopTabNavigator();
+
+// Clear store (for testing)
+// persistor.purge();
 
 const App = () => {
   const systemTheme = useColorScheme();
   const theme = systemTheme === "dark" ? darkTheme : lightTheme;
   const { colors } = theme;
-  const [searchQuery, setSearchQuery] = useState("");
-
-  function handleSearchSubmit() {
-    if (!searchQuery.trim()) return;
-    store.dispatch(fetchResults(searchQuery.trim()));
-  }
 
   return (
     <StoreProvider store={store}>
       <PaperProvider theme={theme}>
         <PersistGate loading={null} persistor={persistor}>
           <StatusBar />
-          <Appbar.Header
-            style={{
-              backgroundColor: colors.primary,
-              margin: 5,
-              elevation: 0,
-            }}
-          >
-            <Searchbar
-              placeholder="Search"
-              onChangeText={setSearchQuery}
-              value={searchQuery}
-              onSubmitEditing={handleSearchSubmit}
-              style={{
-                elevation: 0,
-                backgroundColor: colors.primary,
-              }}
-              selectionColor={colors.accent}
-            />
-          </Appbar.Header>
+          <Header />
           <SafeAreaProvider>
             <NavigationContainer theme={theme}>
               <Tab.Navigator
@@ -81,7 +56,8 @@ const App = () => {
               >
                 <Tab.Screen
                   name="Home"
-                  component={HomeScreen}
+                  component={CardList}
+                  initialParams={{ data: "results" }}
                   options={{
                     tabBarIcon: ({ color }) => (
                       <MaterialCommunityIcons
@@ -94,7 +70,8 @@ const App = () => {
                 />
                 <Tab.Screen
                   name="Saved"
-                  component={SavedScreen}
+                  component={CardList}
+                  initialParams={{ data: "saved" }}
                   options={{
                     tabBarIcon: ({ color }) => (
                       <MaterialCommunityIcons
@@ -106,8 +83,8 @@ const App = () => {
                   }}
                 />
               </Tab.Navigator>
-              <Bar />
             </NavigationContainer>
+            <Bar />
           </SafeAreaProvider>
         </PersistGate>
       </PaperProvider>
