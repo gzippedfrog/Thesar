@@ -1,11 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { useColorScheme } from "react-native";
+import { Dimensions, useColorScheme } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Provider as PaperProvider } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import color from "color";
 
 import { Provider as StoreProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -31,8 +32,8 @@ const App = () => {
       <PaperProvider theme={theme}>
         <PersistGate loading={null} persistor={persistor}>
           <StatusBar style="light" />
-          <Header />
           <SafeAreaProvider>
+            <Header />
             <NavigationContainer theme={theme}>
               <Tab.Navigator
                 screenOptions={{
@@ -52,35 +53,25 @@ const App = () => {
                     elevation: 10,
                   },
                   tabBarItemStyle: { flexDirection: "row" },
+                  tabBarPressColor: (dark ? color("#fff") : color("#000"))
+                    .alpha(0.3)
+                    .toString(),
                 }}
+                initialLayout={{ width: Dimensions.get("window").width }}
               >
                 <Tab.Screen
                   name="Results"
                   component={CardList}
                   initialParams={{ data: "results" }}
                   options={{
-                    tabBarIcon: ({ color }) => (
-                      <MaterialCommunityIcons
-                        name="view-list"
-                        color={color}
-                        size={24}
-                      />
-                    ),
+                    tabBarIcon: renderIcon("view-list"),
                   }}
                 />
                 <Tab.Screen
                   name="Saved"
                   component={CardList}
                   initialParams={{ data: "saved" }}
-                  options={{
-                    tabBarIcon: ({ color }) => (
-                      <MaterialCommunityIcons
-                        name="bookmark"
-                        color={color}
-                        size={24}
-                      />
-                    ),
-                  }}
+                  options={{ tabBarIcon: renderIcon("bookmark") }}
                 />
               </Tab.Navigator>
             </NavigationContainer>
@@ -91,5 +82,11 @@ const App = () => {
     </StoreProvider>
   );
 };
+
+function renderIcon(name) {
+  return ({ color }) => (
+    <MaterialCommunityIcons name={name} color={color} size={24} />
+  );
+}
 
 export default App;
