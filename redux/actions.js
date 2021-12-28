@@ -10,21 +10,20 @@ import {
 
 const key = "802ed77c-a736-442e-88ad-7496371b49e4";
 const url = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
-// Dictionary
-// const key = "0a97f0e1-ac7e-41ca-9422-f61d039223b9";
-// const url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/";
 
 export const fetchResults = (query) => async (dispatch) => {
-  dispatch(showLoader());
-  // await new Promise((res) => setTimeout(() => res(), 2000));
-
-  let response = await fetch(url + query + "?key=" + key);
-  response = await response.json();
   const results = {};
-  response.map((word) => (results[word.meta.uuid] = word));
-  dispatch({ type: FETCH_RESULTS, payload: results });
+  dispatch(showLoader());
+  // await new Promise((res) => setTimeout(() => res(), 1000));
 
-  dispatch(hideLoader());
+  try {
+    let response = await fetch(url + query + "?key=" + key);
+    response = await response.json();
+    response.map((word) => (results[word.meta.uuid] = word));
+  } finally {
+    dispatch(hideLoader());
+    dispatch({ type: FETCH_RESULTS, payload: results });
+  }
 };
 
 export const showLoader = () => ({ type: SHOW_LOADER });
@@ -45,14 +44,7 @@ export const showMessage = (message) => (dispatch, getState) => {
   clearTimeout(getState().bar.timer);
   let timer = setTimeout(() => dispatch({ type: HIDE_BAR }), 2000);
   setTimeout(
-    () =>
-      dispatch({
-        type: SHOW_BAR,
-        payload: {
-          message,
-          timer,
-        },
-      }),
+    () => dispatch({ type: SHOW_BAR, payload: { message, timer } }),
     100
   );
 };

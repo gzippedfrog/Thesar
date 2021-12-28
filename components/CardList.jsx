@@ -5,11 +5,17 @@ import { useSelector } from "react-redux";
 import WordCard from "./WordCard";
 
 const CardList = ({ route }) => {
-  const words = useSelector((state) => Object.values(state[route.params.data]));
-  const isLoading = useSelector((state) => state.isLoading);
+  const words = useSelector((state) =>
+    Object.values(state.app[route.params.data])
+  );
+  const isLoading = useSelector((state) => state.loader);
   const { colors } = useTheme();
 
-  return words.length ? (
+  return isLoading ? (
+    <View style={styles.textContainer}>
+      <ActivityIndicator size="large" color={colors.accent} />
+    </View>
+  ) : words.length ? (
     <FlatList
       contentContainerStyle={styles.listContainer}
       data={words}
@@ -18,11 +24,7 @@ const CardList = ({ route }) => {
     />
   ) : (
     <View style={styles.textContainer}>
-      {isLoading ? (
-        <ActivityIndicator size="large" color={colors.accent} />
-      ) : (
-        <Text>No results </Text>
-      )}
+      <Text>No results </Text>
     </View>
   );
 };

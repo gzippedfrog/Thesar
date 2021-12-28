@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeWord, saveWord } from "../redux/actions";
 
 const WordCard = ({ word }) => {
-  const saved = useSelector((state) => state.saved);
+  const saved = useSelector((state) => state.app.saved);
   const dispatch = useDispatch();
   const { colors } = useTheme();
 

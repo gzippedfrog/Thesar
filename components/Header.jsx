@@ -5,31 +5,30 @@ import { fetchResults } from "../redux/actions";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [lastQuery, setLastQuery] = useState("");
   const dispatch = useDispatch();
   const { colors } = useTheme();
 
   function handleSearchSubmit() {
-    if (!searchQuery.trim()) return;
+    const query = searchQuery.trim();
+    if (!query || query === lastQuery) return;
+    setLastQuery(query);
     dispatch(fetchResults(searchQuery.trim()));
   }
 
+  const styles = {
+    backgroundColor: colors.primary,
+    elevation: 0,
+  };
+
   return (
-    <Appbar.Header
-      style={{
-        backgroundColor: colors.primary,
-        margin: 5,
-        elevation: 0,
-      }}
-    >
+    <Appbar.Header style={styles}>
       <Searchbar
         placeholder="Search"
         onChangeText={setSearchQuery}
         value={searchQuery}
         onSubmitEditing={handleSearchSubmit}
-        style={{
-          elevation: 0,
-          backgroundColor: colors.primary,
-        }}
+        style={styles}
         selectionColor={colors.accent}
       />
     </Appbar.Header>

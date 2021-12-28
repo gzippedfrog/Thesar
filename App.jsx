@@ -19,7 +19,7 @@ import Bar from "./components/Bar";
 const Tab = createMaterialTopTabNavigator();
 
 // Clear store (for testing)
-// persistor.purge();
+persistor.purge();
 
 const App = () => {
   const systemTheme = useColorScheme();
