@@ -42,8 +42,7 @@ const App = () => {
                     fontWeight: "bold",
                   },
                   tabBarActiveTintColor: colors.accent,
-                  tabBarInactiveTintColor: "rgba(255, 255, 255, 0.5)",
-
+                  tabBarInactiveTintColor: color("#fff").alpha(0.5).toString(),
                   tabBarIndicatorStyle: {
                     backgroundColor: colors.accent,
                     height: 3,
@@ -53,7 +52,7 @@ const App = () => {
                     elevation: 10,
                   },
                   tabBarItemStyle: { flexDirection: "row" },
-                  tabBarPressColor: (dark ? color("#fff") : color("#000"))
+                  tabBarPressColor: color(dark ? "#fff" : "#000")
                     .alpha(0.3)
                     .toString(),
                 }}
@@ -64,14 +63,14 @@ const App = () => {
                   component={CardList}
                   initialParams={{ data: "results" }}
                   options={{
-                    tabBarIcon: renderIcon("view-list"),
+                    tabBarIcon: icon("view-list"),
                   }}
                 />
                 <Tab.Screen
                   name="Saved"
                   component={CardList}
                   initialParams={{ data: "saved" }}
-                  options={{ tabBarIcon: renderIcon("bookmark") }}
+                  options={{ tabBarIcon: icon("bookmark") }}
                 />
               </Tab.Navigator>
             </NavigationContainer>
@@ -83,7 +82,7 @@ const App = () => {
   );
 };
 
-function renderIcon(name) {
+function icon(name) {
   return ({ color }) => (
     <MaterialCommunityIcons name={name} color={color} size={24} />
   );

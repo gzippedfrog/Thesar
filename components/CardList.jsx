@@ -6,11 +6,10 @@ import WordCard from "./WordCard";
 
 const CardList = ({ route }) => {
   const words = useSelector((state) =>
-    Object.values(state.app[route.params.data])
+    Object.values(state.cards[route.params.data])
   );
-  const isLoading = useSelector((state) => state.loader);
+  const isLoading = useSelector((state) => state.loader.visible);
   const { colors, dark } = useTheme();
-
   return isLoading ? (
     <View style={styles.textContainer}>
       <ActivityIndicator

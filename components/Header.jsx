@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Appbar, Searchbar, useTheme } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { fetchResults } from "../redux/actions";
+import { fetchResults } from "../redux/cardsSlice";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,7 +13,7 @@ const Header = () => {
     const query = searchQuery.trim();
     if (!query || query === lastQuery) return;
     setLastQuery(query);
-    dispatch(fetchResults(searchQuery.trim()));
+    dispatch(fetchResults(query));
   }
 
   const styles = {
@@ -30,8 +30,8 @@ const Header = () => {
         onSubmitEditing={handleSearchSubmit}
         style={styles}
         selectionColor={colors.accent}
-        iconColor="white"
-        inputStyle={{ color: "white" }}
+        iconColor="#fff"
+        inputStyle={{ color: "#fff" }}
         placeholderTextColor="rgba(255, 255, 255, 0.5)"
         selectionColor={dark ? colors.accent : "orange"}
       />
