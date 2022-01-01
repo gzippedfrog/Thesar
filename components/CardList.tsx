@@ -1,14 +1,15 @@
 import React from "react";
 import { FlatList, View, StyleSheet, ActivityIndicator } from "react-native";
 import { Text, useTheme } from "react-native-paper";
-import { useSelector } from "react-redux";
+import { Word } from "../redux/cardsSlice";
+import { useAppSelector } from "../redux/hooks";
 import WordCard from "./WordCard";
 
 const CardList = ({ route }) => {
-  const words = useSelector((state) =>
+  const words: Array<Word> = useAppSelector((state) =>
     Object.values(state.cards[route.params.data])
   );
-  const isLoading = useSelector((state) => state.loader.visible);
+  const isLoading = useAppSelector((state) => state.loader.visible);
   const { colors, dark } = useTheme();
   return isLoading ? (
     <View style={styles.textContainer}>

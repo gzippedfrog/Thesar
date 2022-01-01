@@ -1,9 +1,9 @@
 import React from "react";
 import { Snackbar } from "react-native-paper";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../redux/hooks";
 
 const Bar = () => {
-  const bar = useSelector((state) => state.bar);
+  const bar = useAppSelector((state) => state.bar);
 
   return <Snackbar visible={bar.visible}>{bar.message}</Snackbar>;
 };

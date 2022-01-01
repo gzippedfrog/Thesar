@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Card, Paragraph, Text, useTheme } from "react-native-paper";
-import { useDispatch, useSelector } from "react-redux";
 import { removeWord, saveWord } from "../redux/cardsSlice";
 import { showMessage } from "../redux/barSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const WordCard = ({ word }) => {
-  const saved = useSelector((state) => state.cards.saved);
-  const dispatch = useDispatch();
+  const saved = useAppSelector((state) => state.cards.saved);
+  const dispatch = useAppDispatch();
   const { colors, dark } = useTheme();
 
   function onCardLongPress() {
