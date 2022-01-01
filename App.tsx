@@ -6,7 +6,6 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Provider as PaperProvider } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import color from "color";
 
 import { Provider as StoreProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -19,13 +18,10 @@ import Bar from "./components/Bar";
 
 const Tab = createMaterialTopTabNavigator();
 
-// Clear store (for testing)
-// persistor.purge();
-
 const App = () => {
   const systemTheme = useColorScheme();
   const theme = systemTheme === "dark" ? darkTheme : lightTheme;
-  const { colors, dark } = theme;
+  const { colors } = theme;
 
   return (
     <StoreProvider store={store}>
@@ -42,7 +38,7 @@ const App = () => {
                     fontWeight: "bold",
                   },
                   tabBarActiveTintColor: colors.accent,
-                  tabBarInactiveTintColor: color("#fff").alpha(0.5).toString(),
+                  tabBarInactiveTintColor: "rgba(255,255,255,0.5)",
                   tabBarIndicatorStyle: {
                     backgroundColor: colors.accent,
                     height: 3,
@@ -52,9 +48,7 @@ const App = () => {
                     elevation: 10,
                   },
                   tabBarItemStyle: { flexDirection: "row" },
-                  tabBarPressColor: color(dark ? "#fff" : "#000")
-                    .alpha(0.3)
-                    .toString(),
+                  tabBarPressColor: colors.tabPressColor,
                 }}
                 initialLayout={{ width: Dimensions.get("window").width }}
               >
@@ -82,7 +76,7 @@ const App = () => {
   );
 };
 
-function icon(name) {
+function icon(name: string) {
   return ({ color }) => (
     <MaterialCommunityIcons name={name} color={color} size={24} />
   );

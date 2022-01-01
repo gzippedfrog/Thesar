@@ -24,7 +24,7 @@ const WordCard = ({ word }) => {
     <Card style={styles.card} onLongPress={onCardLongPress}>
       <Card.Title title={word.meta.id.replace(/\:.*/, "")} subtitle={word.fl} />
       <Card.Content>
-        {word.shortdef.map((def, i) => (
+        {word.shortdef.map((def: string, i: number) => (
           <Paragraph style={styles.paragraph} key={def}>
             {def + "\n"}
             <Text style={{ color: dark ? colors.accent : colors.primary }}>

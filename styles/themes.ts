@@ -11,10 +11,24 @@ import merge from "deepmerge";
 let lightTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 let darkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 
-lightTheme.colors.primary = "#009bd0";
-lightTheme.colors.accent = "white";
+const customLightTheme = {
+  ...lightTheme,
+  colors: {
+    ...lightTheme.colors,
+    primary: "#009bd0",
+    accent: "white",
+    tabPressColor: "rgba(0,0,0,0.3)",
+  },
+};
 
-darkTheme.colors.primary = "#121212";
-darkTheme.colors.accent = "#5eccff";
+const customDarkTheme = {
+  ...darkTheme,
+  colors: {
+    ...darkTheme.colors,
+    primary: "#121212",
+    accent: "#5eccff",
+    tabPressColor: "rgba(255,255,255,0.3)",
+  },
+};
 
-export { lightTheme, darkTheme };
+export { customLightTheme as lightTheme, customDarkTheme as darkTheme };
