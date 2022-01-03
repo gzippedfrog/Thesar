@@ -18,7 +18,7 @@ State managment:
 - [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
 - [Redux Persist](https://github.com/rt2zz/redux-persist)
 
-## Known Problems
+## Known problems
 
 Due to a [bug](https://github.com/callstack/react-native-paper/issues/3009) in React Native Paper library, switching between dark/light theme causes crash most of the times.
 
