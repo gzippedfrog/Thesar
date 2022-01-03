@@ -1,8 +1,5 @@
-import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-
-interface LoaderState {
-  visible: boolean;
-}
+import { createAction, createReducer } from "@reduxjs/toolkit";
+import { LoaderState } from "../types";
 
 const initialState: LoaderState = {
   visible: false,

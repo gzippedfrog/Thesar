@@ -18,7 +18,7 @@ import barReducer from "./barSlice";
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ["app"],
+  whitelist: ["cards"],
 };
 
 const rootReducer = combineReducers({

@@ -1,10 +1,6 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-
-export interface BarState {
-  visible: boolean;
-  message: string | null;
-  timer: ReturnType<typeof setTimeout> | null;
-}
+import { BarState, Timer } from "../types";
+import { AppDispatch, RootState } from "./store";
 
 const initialState: BarState = {
   visible: false,
@@ -15,12 +11,14 @@ const initialState: BarState = {
 // Actions
 const showBar = createAction<BarState>("bar/showBar");
 const hideBar = createAction("bar/hideBar");
-export const showMessage = (message) => (dispatch, getState) => {
-  dispatch(hideBar());
-  clearTimeout(getState().bar.timer);
-  let timer = setTimeout(() => dispatch(hideBar()), 2000);
-  setTimeout(() => dispatch(showBar({ message, timer } as BarState)), 100);
-};
+export const showMessage =
+  (message: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+    dispatch(hideBar());
+    let timer = getState().bar.timer as Timer;
+    clearTimeout(timer);
+    timer = setTimeout(() => dispatch(hideBar()), 2000);
+    setTimeout(() => dispatch(showBar({ message, timer } as BarState)), 100);
+  };
 
 // Reducer
 const barReducer = createReducer(initialState, (builder) => {

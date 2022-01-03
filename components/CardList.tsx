@@ -1,11 +1,11 @@
 import React from "react";
 import { FlatList, View, StyleSheet, ActivityIndicator } from "react-native";
 import { Text, useTheme } from "react-native-paper";
-import { Word } from "../redux/cardsSlice";
 import { useAppSelector } from "../redux/hooks";
+import { CardListProps, Word } from "../types";
 import WordCard from "./WordCard";
 
-const CardList = ({ route }) => {
+const CardList = ({ route }: CardListProps) => {
   const words: Array<Word> = useAppSelector((state) =>
     Object.values(state.cards[route.params.data])
   );

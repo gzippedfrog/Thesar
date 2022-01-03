@@ -1,24 +1,15 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Card, Paragraph, Text, useTheme } from "react-native-paper";
-import { removeWord, saveWord } from "../redux/cardsSlice";
-import { showMessage } from "../redux/barSlice";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { updateSaved } from "../redux/cardsSlice";
+import { useAppDispatch } from "../redux/hooks";
+import { WordCardProps } from "../types";
 
-const WordCard = ({ word }) => {
-  const saved = useAppSelector((state) => state.cards.saved);
+const WordCard = ({ word }: WordCardProps) => {
   const dispatch = useAppDispatch();
   const { colors, dark } = useTheme();
 
-  function onCardLongPress() {
-    if (saved[word.meta.uuid]) {
-      dispatch(removeWord(word));
-      dispatch(showMessage("Card removed"));
-    } else {
-      dispatch(saveWord(word));
-      dispatch(showMessage("Card saved"));
-    }
-  }
+  const onCardLongPress = () => dispatch(updateSaved(word));
 
   return (
     <Card style={styles.card} onLongPress={onCardLongPress}>

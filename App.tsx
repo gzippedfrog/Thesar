@@ -57,14 +57,28 @@ const App = () => {
                   component={CardList}
                   initialParams={{ data: "results" }}
                   options={{
-                    tabBarIcon: icon("view-list"),
+                    tabBarIcon: ({ color }) => (
+                      <MaterialCommunityIcons
+                        name={"view-list"}
+                        color={color}
+                        size={24}
+                      />
+                    ),
                   }}
                 />
                 <Tab.Screen
                   name="Saved"
                   component={CardList}
                   initialParams={{ data: "saved" }}
-                  options={{ tabBarIcon: icon("bookmark") }}
+                  options={{
+                    tabBarIcon: ({ color }) => (
+                      <MaterialCommunityIcons
+                        name={"bookmark"}
+                        color={color}
+                        size={24}
+                      />
+                    ),
+                  }}
                 />
               </Tab.Navigator>
             </NavigationContainer>
@@ -75,11 +89,5 @@ const App = () => {
     </StoreProvider>
   );
 };
-
-function icon(name: string) {
-  return ({ color }) => (
-    <MaterialCommunityIcons name={name} color={color} size={24} />
-  );
-}
 
 export default App;
