@@ -1,11 +1,11 @@
 # Thesar
 
 <img src="./assets/icon.png" width="100" style="display: block"/>
-Simple thesaurus app written using React Native
+Simple thesaurus app written with React Native
 
 ## Libraries used
 
-Tab Navigation:
+Tab navigation:
 
 - [React Navigation](https://github.com/react-navigation/react-navigation)
 
@@ -16,7 +16,7 @@ Material design:
 State managment:
 
 - [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
-- [Redux persist](https://github.com/rt2zz/redux-persist)
+- [Redux Persist](https://github.com/rt2zz/redux-persist)
 
 ## Known Problems
 
