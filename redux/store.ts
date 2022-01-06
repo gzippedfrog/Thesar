@@ -11,9 +11,9 @@ import {
 } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import cardsReducer from "./cardsSlice";
-import loaderReducer from "./loaderSlice";
-import barReducer from "./barSlice";
+import cardsReducer from "../features/cards/reducer";
+import loaderReducer from "../features/loader/reducer";
+import barReducer from "../features/bar/reducer";
 
 const persistConfig = {
   key: "root",

@@ -31,4 +31,5 @@ const customDarkTheme = {
   },
 };
 
+export type Theme = typeof customLightTheme | typeof customDarkTheme;
 export { customLightTheme as lightTheme, customDarkTheme as darkTheme };

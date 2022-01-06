@@ -1,9 +1,9 @@
-import React from "react";
 import { FlatList, View, StyleSheet, ActivityIndicator } from "react-native";
 import { Text, useTheme } from "react-native-paper";
 import { useAppSelector } from "../redux/hooks";
-import { CardListProps, Word } from "../types";
 import WordCard from "./WordCard";
+import type { Word } from "../features/cards/types";
+import type { CardListProps } from "../navigation/types";
 
 const CardList = ({ route }: CardListProps) => {
   const words: Array<Word> = useAppSelector((state) =>

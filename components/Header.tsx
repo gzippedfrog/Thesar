@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Appbar, Searchbar, useTheme } from "react-native-paper";
-import { fetchResults } from "../redux/cardsSlice";
+import { fetchResults } from "../features/cards/actions";
 import { useAppDispatch } from "../redux/hooks";
 
 const Header = () => {

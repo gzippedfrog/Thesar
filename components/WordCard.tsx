@@ -1,9 +1,8 @@
-import React from "react";
 import { StyleSheet } from "react-native";
 import { Card, Paragraph, Text, useTheme } from "react-native-paper";
-import { updateSaved } from "../redux/cardsSlice";
+import { updateSaved } from "../features/cards/actions";
 import { useAppDispatch } from "../redux/hooks";
-import { WordCardProps } from "../types";
+import type { WordCardProps } from "../features/cards/types";
 
 const WordCard = ({ word }: WordCardProps) => {
   const dispatch = useAppDispatch();
