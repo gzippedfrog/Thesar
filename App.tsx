@@ -6,12 +6,12 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Provider as StoreProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./redux/store";
+import { store, persistor } from "./src/redux/store";
 
-import { lightTheme, darkTheme } from "./styles/themes";
-import Header from "./components/Header";
-import Bar from "./components/Bar";
-import Navigator from "./navigation/Navigator";
+import { lightTheme, darkTheme } from "./src/styles/themes";
+import Header from "./src/components/Header";
+import Bar from "./src/components/Bar";
+import Navigator from "./src/navigation/Navigator";
 
 const App = () => {
   const systemTheme = useColorScheme();

@@ -1,7 +1,9 @@
 # Thesar
 
-<img src="./assets/icon.png" width="100" style="display: block"/>
-Simple thesaurus app written with React Native
+Thesaurus app written with React Native that shows cards with synonyms and short definitions for words. You can also save your favorite cards for easy access by long pressing on them.
+
+<img src="./assets/Screenshot_1.png" width="300"/>
+<img src="./assets/Screenshot_2.png" width="300"/>
 
 ## Libraries used
 
