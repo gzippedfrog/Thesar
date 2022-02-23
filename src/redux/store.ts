@@ -7,24 +7,28 @@ import {
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER,
+  REGISTER
 } from "redux-persist";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import storage from "@react-native-async-storage/async-storage";
 
 import cardsReducer from "../features/cards/reducer";
 import loaderReducer from "../features/loader/reducer";
 import barReducer from "../features/bar/reducer";
 
+// import MMKVStorage from "react-native-mmkv-storage";
+
+// const storage = new MMKVStorage.Loader().initialize();
+
 const persistConfig = {
   key: "root",
-  storage: AsyncStorage,
-  whitelist: ["cards"],
+  storage,
+  whitelist: ["cards"]
 };
 
 const rootReducer = combineReducers({
   cards: cardsReducer,
   loader: loaderReducer,
-  bar: barReducer,
+  bar: barReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -34,9 +38,9 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
+    })
 });
 
 let persistor = persistStore(store);

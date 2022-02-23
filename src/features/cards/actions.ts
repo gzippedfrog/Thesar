@@ -29,7 +29,7 @@ export const fetchResults =
     dispatch(showLoader());
     try {
       const response = await fetch(url + query + "?key=" + key);
-      const data: Array<Word> = await response.json();
+      const data: Word[] = await response.json();
       data.forEach((word) => (results[word.meta.uuid] = word));
     } catch (error: any) {
       console.log("Error:", error.message);

@@ -1,35 +1,42 @@
 import {
   DarkTheme as PaperDarkTheme,
-  DefaultTheme as PaperDefaultTheme,
+  DefaultTheme as PaperDefaultTheme
 } from "react-native-paper";
 import {
   DarkTheme as NavigationDarkTheme,
-  DefaultTheme as NavigationDefaultTheme,
+  DefaultTheme as NavigationDefaultTheme
 } from "@react-navigation/native";
 import merge from "deepmerge";
+
+declare global {
+  namespace ReactNativePaper {
+    interface ThemeColors {
+      ripple: string;
+    }
+  }
+}
 
 let defaultLightTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 let defaultDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 
-const customLightTheme = {
+export const lightTheme = {
   ...defaultLightTheme,
   colors: {
     ...defaultLightTheme.colors,
     primary: "#009bd0",
-    accent: "white",
-    tabPressColor: "rgba(0,0,0,0.3)",
-  },
+    accent: "#fff",
+    ripple: "rgba(0,0,0,0.3)"
+  }
 };
 
-const customDarkTheme = {
+export const darkTheme = {
   ...defaultDarkTheme,
   colors: {
     ...defaultDarkTheme.colors,
     primary: "#121212",
     accent: "#5eccff",
-    tabPressColor: "rgba(255,255,255,0.3)",
-  },
+    ripple: "rgba(255,255,255,0.3)"
+  }
 };
 
-export type Theme = typeof customLightTheme | typeof customDarkTheme;
-export { customLightTheme as lightTheme, customDarkTheme as darkTheme };
+export type Theme = typeof lightTheme;

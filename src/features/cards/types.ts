@@ -2,7 +2,7 @@ export interface Word {
   meta: {
     uuid: string;
     id: string;
-    syns: Array<Array<string>>;
+    syns: string[][];
   };
   shortdef: string[];
   fl: string;

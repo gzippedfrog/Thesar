@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet } from "react-native";
 import { Card, Paragraph, Text, useTheme } from "react-native-paper";
 import { updateSaved } from "../features/cards/actions";
@@ -31,12 +32,12 @@ const WordCard = ({ word }: WordCardProps) => {
 const styles = StyleSheet.create({
   card: {
     marginHorizontal: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   paragraph: {
     marginBottom: 20,
-    textAlign: "justify",
-  },
+    textAlign: "justify"
+  }
 });
 
 export default WordCard;

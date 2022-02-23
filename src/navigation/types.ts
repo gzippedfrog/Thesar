@@ -1,5 +1,5 @@
 import type { MaterialTopTabScreenProps } from "@react-navigation/material-top-tabs";
-import type { Theme } from "../styles/themes";
+import { Theme } from "../styles/themes";
 
 export type RootStackParamList = {
   Results: { data: "results" };
